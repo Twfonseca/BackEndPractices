@@ -13,7 +13,6 @@ router.post('/new',bParser.json(),(req, resp)=>{
     posts.newPost(title, description)
     resp.send("Post created")
     console.log(posts.allPosts())
-
 })
 
 router.get('/filter', bParser.json(), (req,resp)=>{

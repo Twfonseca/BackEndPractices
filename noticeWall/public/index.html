@@ -5,9 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <title>Notice Wall</title>
+    <title>Notice Wall App</title>
 </head>
 <body>
-    <h1>test</h1>
+    <div class="container">
+        <h1 class="title">New post</h1>
+    </div>
+    <div>
+        <input type="text" id="title" placeholder="Title">
+        <input type="text" id="description" placeholder="Description">
+        <button id="btn" class="btnstyle" onclick="createNotice()">DONE</button>
+    </div>
+    <div>
+        <input type="text" id="search">
+        <button id="btnsearch" class="btnstyle" onclick="searchNotice()">Search</button>
+    </div>
+    <div>
+        <input type="text" id="delete">
+        <button id="btndelete" class="btnstyle" onclick="deleteNotice()">Delete</button>
+    </div>
+     <h2 class="wallTitle">Notice Wall</h2>
+    <div id="posts" class="postsWall">
+
+    </div>
+
+ <script src="./scripts/script.js"></script>
 </body>
 </html>
