@@ -16,9 +16,8 @@ router.post('/new',bParser.json(),(req, resp)=>{
 })
 
 router.get('/filter', bParser.json(), (req,resp)=>{
-     let searchTitle = req.body.title
-     posts.filterPost(searchTitle)
-     resp.send("Post Finded")
+     let title = req.body.title
+     resp.send(posts.filterPost(title))
 })
 
 router.delete('/delete',bParser.json(),(req,resp)=>{

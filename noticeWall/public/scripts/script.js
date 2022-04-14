@@ -27,7 +27,7 @@ function updateWall(){
 function createNotice(){
    let title =document.querySelector("#title").value;
    let description= document.querySelector("#description").value;
-   const post= { title, description }
+   const post= { title, description };
    const options={
      method:"POST",
      headers: new Headers({'content-type':'application/json'}),
@@ -40,5 +40,34 @@ function createNotice(){
 }
 
 function deletePost(){
-    fetch("http://localhost:80/api/delete")
+  let id= document.querySelector("#delete").value;
+  const post= {id};
+  const options={
+    method:"DELETE",
+    headers: new Headers({'content-type':'application/json'}),
+    body: JSON.stringify(post)
+  }
+    fetch("http://localhost:80/api/delete",options).then(res=> console.log(res));
+    updateWall();
+    title= document.querySelector("#delete").value="";
 }
+
+function searchPost(){
+    let searchTitle=  document.querySelector("#search").value
+    fetch("http://localhost:80/api/all").then(resp=>{return resp.json()}).then(json=>{
+      let posts = JSON.parse(json);
+      let postElement =''
+      let searchPost= posts.find(post=>post.title === searchTitle)
+
+      let  findedElement= ` <h2> Post finded </h2>
+                             <h3> ${searchPost.title}</h3>
+                             <p> ${searchPost.description}</p> `
+
+      postElement+=findedElement
+      document.querySelector("#searchArea").innerHTML =postElement
+      document.querySelector("#search").value=""
+    })
+    
+}
+
+

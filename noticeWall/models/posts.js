@@ -29,19 +29,20 @@ module.exports= {
     },
 
     filterPost(title){
-        let searchPost= this.posts.find(post=>post.title == title )
+        let searchPost= this.posts.find(post=>post.title === title )
         console.log(searchPost)
-        return searchPost
+          return searchPost
     },
     
     deletePost(id){
-        for(let post of this.posts){
-          if(post.id === id && id != undefined){
-            let searchPost = this.posts.findIndex(post=> post.id === id)
+          let idsearch= Number(id)
+          for(let post of this.posts){
+          if(post.id === idsearch && idsearch != undefined){
+            let searchPost = this.posts.findIndex(post=> post.id === idsearch)
             this.posts.splice(searchPost,1)  
             console.log("Post deleted")
-            }else{console.log("Id nonexistent")}
-        }     
+            }
+        }   
     }
 }
 
