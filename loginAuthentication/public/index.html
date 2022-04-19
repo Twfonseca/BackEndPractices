@@ -5,11 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles/style.css">
-    <title>Event list</title>
+    <title>Login Authenticantion</title>
 </head>
 <body>
-      <div>
-
+      <div class="logWindow">
+          <input type="email" name="login" id="loginInpt" class="loginStyle" placeholder="email" required>
+          <input type="password" name="password" id="passInpt" class="passWordStyle" placeholder="Password" required>
+          <select name="hierarchy" id="hierarchy" class="selectStyle">
+              <option value="student">Student</option>
+              <option value="professor">Professor</option>
+          </select>
+          <button id="btnlog" class="btnLogStyle" onclick="loginUser()">Login</button>  
+          <button id="btnregist" class="btnRegStyle" onclick="pageChange()">Register</button>  
+      </div>
+      <div class="registerWindow">
+          <input type="text" name="userName" id="userName" placeholder="Your name">
+          <input type="text" name="userAge" id="userAge" placeholder="Your age">
+          <input type="email" name="userEmail" id="userEmail" placeholder="Your email">
+          <input type="email" name="emailConfirm" id="emailConfirm" placeholder="Confirm your email">
+          <input type="password" name="passWord" id="passWord">
+          <input type="password" name="confirPass" id="confirPass">
+          <button onclick="registerUser()"> Register</button>
       </div>
     <script src="./scripts/script.js"></script>
 </body>

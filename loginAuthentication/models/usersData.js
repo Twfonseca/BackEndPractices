@@ -1,6 +1,21 @@
 module.exports={
     users:[
-
+            {
+              name:"test1", 
+              age:"18", 
+              cpf:"14527854785", 
+              email:"test1@testers.com", 
+              passWord:"123456789", 
+              hierarchy:"professor"
+            },
+            {
+              name:"test2", 
+              age:"25", 
+              cpf:"47412522589", 
+              email:"test2@testers.com", 
+              passWord:"321654987", 
+              hierarchy:"student"
+            }
         ],
 
         getallUsers(){
