@@ -16,19 +16,19 @@ body{
     top:25vh;
 }
 
-.loginStyle, .passWordStyle{
+.loginStyle, .passWordStyle,.inptStyle, .profCodeStyle{
     width: 96%;
     padding: 5px;
     border:  1px solid black;
     border-radius: 5px;
-    margin: 15px 0px 15px 0px;
+    margin: 15px 0px 7px 0px;
 }
 
 
-.btnLogStyle,.btnRegStyle{
+.btnStyle{
     border: 1px solid black;
     border-radius: 3px;
-   padding: 4px;
+    padding: 4px;
 }
 
 .selectStyle{
@@ -37,4 +37,23 @@ body{
 }
 
 
-.registerWindow{}
+.registerWindow{
+    display: none;
+    border: 1px solid black;
+    border-radius: 5px;
+    height:28rem;
+    width: 17rem;
+    text-align: center;
+    padding: 9px;
+    position: relative;
+    top:15vh;
+}
+
+.optionStyle{
+    width: 70%;
+    margin-bottom: 10px;
+}
+
+.profCodeStyle{
+    display: none;
+}

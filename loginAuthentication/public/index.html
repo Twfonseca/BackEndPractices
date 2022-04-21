@@ -15,17 +15,25 @@
               <option value="student">Student</option>
               <option value="professor">Professor</option>
           </select>
-          <button id="btnlog" class="btnLogStyle" onclick="loginUser()">Login</button>  
-          <button id="btnregist" class="btnRegStyle" onclick="pageChange()">Register</button>  
+          <button id="btnlog" class="btnStyle" onclick="loginUser()">Login</button>  
+          <button id="btnregist" class="btnStyle" onclick="changeRegisterWindow()">Register</button>  
       </div>
-      <div class="registerWindow">
-          <input type="text" name="userName" id="userName" placeholder="Your name">
-          <input type="text" name="userAge" id="userAge" placeholder="Your age">
-          <input type="email" name="userEmail" id="userEmail" placeholder="Your email">
-          <input type="email" name="emailConfirm" id="emailConfirm" placeholder="Confirm your email">
-          <input type="password" name="passWord" id="passWord">
-          <input type="password" name="confirPass" id="confirPass">
-          <button onclick="registerUser()"> Register</button>
+      <div class="registerWindow" id="registerChange">
+          <input type="text" name="userName" id="userName" class="inptStyle" placeholder="Your name">
+          <input type="text" name="userAge" id="userAge" class="inptStyle" placeholder="Your age">
+          <input type="text" name="userCpf" id="useCpf" class="inptStyle" placeholder="Your CPF">
+          <input type="email" name="userEmail" id="userEmail" class="inptStyle" placeholder="Your email">
+          <input type="email" name="emailConfirm" id="emailConfirm" class="inptStyle" placeholder="Confirm your email">
+          <input type="password" name="passWord" id="passWord" class="inptStyle" placeholder="Password">
+          <input type="password" name="confirPass" id="confirPass" class="inptStyle" placeholder="Confirm your Password">
+          <span>Hierarchy: </span>
+          <select name="hierarchy" id="hierarchyRegister" class="optionStyle">
+            <option value="student">Student</option>
+            <option value="professor">Professor</option>
+        </select>
+          <input type="text" name="professorCode" id="professorCode" class="profCodeStyle" placeholder="Professor Code">
+          <button class="btnStyle" id="registerBtn" onclick="checkData()"></button>
+          <button class="btnStyle" onclick="backLoginWindow()"> Login</button>
       </div>
     <script src="./scripts/script.js"></script>
 </body>

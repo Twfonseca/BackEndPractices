@@ -6,7 +6,8 @@ module.exports={
               cpf:"14527854785", 
               email:"test1@testers.com", 
               passWord:"123456789", 
-              hierarchy:"professor"
+              hierarchy:"professor",
+              code:"1457"
             },
             {
               name:"test2", 
