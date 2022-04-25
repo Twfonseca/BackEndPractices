@@ -7,7 +7,6 @@ module.exports={
               email:"test1@testers.com", 
               passWord:"123456789", 
               hierarchy:"professor",
-              code:"1457"
             },
             {
               name:"test2", 
@@ -24,7 +23,7 @@ module.exports={
         },
 
         createUser(name, age, cpf, email, passWord, hierarchy){
-          this.users.push({name, age, cpf, email, passWord, hierarchy})
+          this.users.push({name:name, age: age, cpf:cpf, email: email, passWord:passWord, hierarchy:hierarchy})
         },
 
         deleteUser(cpf){

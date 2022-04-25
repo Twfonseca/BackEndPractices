@@ -36,6 +36,7 @@ function backLoginWindow(){
   regstWindow.style="Display:none;"
 }
 
+
 function checkData(){
   let userName=document.querySelector("#userName").value;
   let userAge=document.querySelector("#userAge").value;
@@ -44,13 +45,7 @@ function checkData(){
   let confirmEmail=document.querySelector("#emailConfirm").value
   let userPass=document.querySelector("#passWord").value;
   let confirmPass=document.querySelector("#confirPass").value
-  let userHierarchy= document.querySelector("#hierarchyRegister").value
-  let professorCodeConfirm= document.querySelector("#professorCode")
-
-  if(userHierarchy === "professor"){
-    professorCodeConfirm.style="display: initial"
-  }else{professorCodeConfirm.style="display: none"}
-  
+  let userHierarchy= document.querySelector("#hierarchyRegister").value  
   userName.trim()
   userAge.trim()
   userCpf.trim()
@@ -58,101 +53,87 @@ function checkData(){
   confirmEmail.trim()
   userPass.trim()
   confirmPass.trim()
-  professorCodeConfirm.value.trim()
-
-  switch(userName){
-    case "":window.alert( "Invalid user name please try again");
-    break
-    case undefined: window.alert( "Invalid user name please try again");
-    break
-    case null:window.alert( "Invalid user name please try again");
-    break
-    default:console.log(`User name ok`);
+  if(userName === "" || userName === undefined){
+    return window.alert( "Invalid user name please try again");
+  }else{
+    console.log(`User name ok`);
   }
 
-  switch(userAge){
-    case "":window.alert( "Invalid user age please try agian");
-    break
-    case undefined: window.alert( "Invalid user age please try agian");
-    break
-    case null:window.alert( "Invalid user age please try agian");
-    break
-    default:console.log(`User age ok`);
+  if(userAge === "" || userAge === undefined){
+    return window.alert( "Invalid user age please try again");
+  }else{
+    console.log(`User age ok`);
   }
 
-  switch(userCpf){
-    case "":window.alert( "Invalid user Cpf please try again");
-    break
-    case undefined: window.alert( "Invalid user Cpf please try again");
-    break
-    case null:window.alert( "Invalid user Cpf please try again");
-    break; 
+  if(userCpf === "" || userCpf === undefined){
+    return window.alert( "Invalid user Cpf please try again");
+  }else{
+    console.log(`User Cpf ok`);
   }
 
-  switch(userEmail){
-    case "":window.alert( "Invalid Email please try again");
-    break
-    case undefined: window.alert( "Invalid Email please try again");
-    break
-    case null:window.alert( "Invalid Email please try again");
-    break
+  if(userEmail === "" ||userEmail === undefined){
+    return window.alert( "Invalid user email please try again");
+  }else{
+    console.log(`User email ok`);
   }
 
-  switch(userPass){
-    case "":window.alert( "Invalid password please try again");
-    break
-    case undefined: window.alert( "Invalid password please try again");
-    break
-    case null:window.alert( "Invalid password please try again");
-    break
-    default:console.log(`User pass ok`);
-  }
-
-   if(userCpf.length+"" < 11){
-    window.alert( "Total of numbers are incomplete, please try again")
+  if(userCpf.length+"" < 11){
+    return window.alert( "Total of numbers are incomplete, please try again")
   }
 
   if(userEmail != confirmEmail){
-    window.alert( "Invalid email or not match with de confirmation email. Try again")
+    return window.alert( "Invalid email or not match with de confirmation email. Try again")
   }
 
   if(userPass != confirmPass){
-    window.alert( "Invalid password or not match with de confirmation password. Try again")
+    return window.alert( "Invalid password or not match with de confirmation password. Try again")
   }
 
   if(userPass.length+"" < 8 || confirmPass.length+""< 8){
-    window.alert( "Invalid password or password and confirmation don't match or try another with more than 8 digits")
+   return window.alert( "Invalid password or password and confirmation don't match or try another with more than 8 digits")
   }   
-  
-  if(userHierarchy === "professor" && professorCodeConfirm.value ===""){
-    window.alert("Please insert professor's code")
+
+   fetch("http://localhost:5000/api/all").then(resp=>{
+    return resp.json()
+  }).then(json=>{
+   let allUser= JSON.parse(json)
+   let findCpf= allUser.find(user=> user.cpf === userCpf)
+   let findEmail= allUser.find(user=> user.email === userEmail)
+   let checkItens= 0
+   if(findCpf === undefined ){
+     checkItens= checkItens + 1
+   } 
+   if(findEmail === undefined ){
+    checkItens= checkItens + 1
   }
-
-  /*if(userHierarchy === "professor"){
-     let professorObj={
-    name:userName,
-    age:userAge,
-    cpf:userCpf,
-    email:userEmail,
-    passWord:userPass,
-    hierarchy:userHierarchy,
-    code:professorCodeConfirm.value} 
-    console.log(professorObj)
-    return  professorObj
-   }else{   let studentObj= { 
-    name:userName,
-    age:userAge,
-    cpf:userCpf,
-    email:userEmail,
-    passWord:userPass,
-    hierarchy:userHierarchy}
-    console.log(studentObj)
-    return  studentObj
- }*/
-
+  if(checkItens === 2){
+      registerUser(userName, userAge, userCpf, userEmail, userPass, userHierarchy)
+    }else{
+      window.alert("This cpf or email is already being used")
+    }
+  })
 }
 
-function registerUser(){
+function registerUser(name, age, cpf, email, passWord, hierarchy){
+  let userPrfsr={}
+  let userStudn={}
+  let postUser= {}
 
+  if(hierarchy === "professor"){ 
+     userPrfsr={name:name, age:age, cpf:cpf, email:email, passWord:passWord, hierarchy:hierarchy,code:code}
+     postUser=userPrfsr
+   }else{ 
+      userStudn={name:name, age:age, cpf:cpf, email:email, passWord:passWord, hierarchy:hierarchy}
+      postUser=userStudn
+ }
 
+ console.log(postUser)
+
+  const options={
+    method:"POST",
+    headers: new Headers({'content-type':'application/json'}),
+    body: JSON.stringify(postUser) 
+  }
+  fetch("http://localhost:5000/api/new", options).then(res=> console.log(res));
 }
+
